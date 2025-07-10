@@ -20,7 +20,7 @@ class TripCrew:
     agents = TripAgents()
     tasks = TripTasks()
 
-    llm = ChatOpenAI(model='gpt-4o-mini')
+    llm = ChatOpenAI(model='gpt-4o-mini') # substantial cost reduction and speed improvement
 
     city_selector_agent = agents.city_selection_agent(llm=llm)
     local_expert_agent = agents.local_expert(llm=llm)
