@@ -11,6 +11,9 @@ unstructured = '==0.10.25'
 pyowm = '3.3.0'
 tools = "^0.1.9"
 python-dotenv = "1.0.0"
+galileo = { version = "*", extras = ["openai"] }
+galileo-core = "^3.55.0"
+openai = "1.55.3"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md

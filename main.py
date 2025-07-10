@@ -78,7 +78,10 @@ if __name__ == "__main__":
     """))
   
   trip_crew = TripCrew(location, cities, date_range, interests)
+
+  #with galileo_context():
   result = trip_crew.run()
+
   print("\n\n########################")
   print("## Here is you Trip Plan")
   print("########################\n")
