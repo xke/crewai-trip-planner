@@ -8,6 +8,9 @@ load_dotenv()
 
 from langchain.chat_models import ChatOpenAI
 
+# commenting out due to error message...
+#from galileo import log, galileo_context, openai  # Import Galileo components
+
 class TripCrew:
 
   def __init__(self, origin, cities, date_range, interests):
