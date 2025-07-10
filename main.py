@@ -6,6 +6,8 @@ from trip_tasks import TripTasks
 from dotenv import load_dotenv
 load_dotenv()
 
+from langchain.chat_models import ChatOpenAI
+
 class TripCrew:
 
   def __init__(self, origin, cities, date_range, interests):
@@ -18,9 +20,11 @@ class TripCrew:
     agents = TripAgents()
     tasks = TripTasks()
 
-    city_selector_agent = agents.city_selection_agent()
-    local_expert_agent = agents.local_expert()
-    travel_concierge_agent = agents.travel_concierge()
+    llm = ChatOpenAI(model='gpt-4o-mini')
+
+    city_selector_agent = agents.city_selection_agent(llm=llm)
+    local_expert_agent = agents.local_expert(llm=llm)
+    travel_concierge_agent = agents.travel_concierge(llm=llm)
 
     identify_task = tasks.identify_task(
       city_selector_agent,

@@ -1,5 +1,5 @@
 from crewai import Agent
-from langchain.llms import OpenAI
+from langchain.chat_models import ChatOpenAI
 
 from tools.browser_tools import BrowserTools
 from tools.calculator_tools import CalculatorTools
@@ -7,7 +7,7 @@ from tools.search_tools import SearchTools
 
 class TripAgents():
 
-  def city_selection_agent(self):
+  def city_selection_agent(self, llm=None):
     return Agent(
         role='City Selection Expert',
         goal='Select the best city based on weather, season, and prices',
@@ -17,9 +17,10 @@ class TripAgents():
             SearchTools.search_internet,
             BrowserTools.scrape_and_summarize_website,
         ],
+        llm=llm,
         verbose=True)
 
-  def local_expert(self):
+  def local_expert(self, llm=None):
     return Agent(
         role='Local Expert at this city',
         goal='Provide the BEST insights about the selected city',
@@ -29,9 +30,10 @@ class TripAgents():
             SearchTools.search_internet,
             BrowserTools.scrape_and_summarize_website,
         ],
+        llm=llm,
         verbose=True)
 
-  def travel_concierge(self):
+  def travel_concierge(self, llm=None):
     return Agent(
         role='Amazing Travel Concierge',
         goal="""Create the most amazing travel itineraries with budget and 
@@ -43,4 +45,5 @@ class TripAgents():
             BrowserTools.scrape_and_summarize_website,
             CalculatorTools.calculate,
         ],
+        llm=llm,
         verbose=True)
